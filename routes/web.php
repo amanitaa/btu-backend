@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\QuizController;
 use App\Models\Quiz;
 use Illuminate\Support\Facades\Route;
 
@@ -14,7 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $quiz = Quiz::all();
-    return response() -> json($quiz);
-});
+//Route::get('/', function () {
+//    $quiz = Quiz::all();
+//    return response() -> json($quiz);
+//});
+
+Route::get('/quiz/{quiz?}', [QuizController::class, "createOrUpdate"]);
+Route::get('/', [QuizController::class, 'get'])->name('quiz.list');
